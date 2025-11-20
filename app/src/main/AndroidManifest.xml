@@ -1,0 +1,20 @@
+<manifest package="com.moonx.app">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <application
+            android:allowBackup="true"
+            android:label="MineDownload">
+
+
+        <service android:name="com.moonx.app.downloader.RelayDownloadService"
+                 android:exported="false" />
+
+
+        <activity android:name="com.moonx.app.ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
