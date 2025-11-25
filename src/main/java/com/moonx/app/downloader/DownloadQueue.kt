@@ -1,0 +1,36 @@
+/*
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.moonx.app.downloader
+
+import android.content.Context
+import android.util.Log
+
+object DownloadQueue {
+    private val TAG = "DownloadQueue"
+
+
+    fun enqueue(ctx: Context, packageName: String, versionCode: String, arch: String, channel: String) {
+// Start service with extras; in production use WorkManager/JobIntentService to handle background reliably
+        val intent = Intent(ctx, RelayDownloadService::class.java)
+        intent.putExtra("pkg", packageName)
+        intent.putExtra("vc", versionCode)
+        intent.putExtra("arch", arch)
+        intent.putExtra("channel", channel)
+        ctx.startService(intent)
+        Log.d(TAG, "Enqueued download job: $packageName @$versionCode")
+    }
+}
