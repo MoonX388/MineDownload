@@ -1,55 +1,92 @@
-<!--
-  ~ Copyright 2018 Google LLC
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     https://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
 <resources>
-
-    <!-- Resources that do not require translation -->
-    <string name="app_name" translatable="false">Sunflower</string>
-
-    <!-- Translatable resources -->
-    <string name="menu_filter_by_grow_zone" translation_description="The label for the menu item to filter the displayed plants by grow zone.">Filter by grow zone</string>
-    <string name="my_garden_title" translation_description="Title for the 'My garden' screen where the user can see the list of plants that have been added to their garden.">My garden</string>
-    <string name="plant_list_title" translation_description="Title for the plant list screen where the user can see a list of plants available to add to their garden.">Plant list</string>
-    <string name="available" translation_description="Text for the header of the plant list page indicating the available plants for users to choose from.">Available Plants</string>
-    <string name="plant_details_title" translation_description="Title for the plant details screen where the user can see the details for a specific plant.">Plant details</string>
-    <string name="add_plant" translation_description="Button text that prompts user to navigate to the Plant List to add plants to their empty garden.">Add plant</string>
-    <string name="added_plant_to_garden" translation_description="Confirmation text that is shown when a user adds a plant to their empty garden.">Added plant to garden</string>
-    <string name="garden_empty" translation_description="Text that is shown on the 'My Garden' screen when no plants have been added to the user's garden">Your garden is empty</string>
-    <string name="plant_date_header" translation_description="Text that is shown on each plant on the 'My Garden' screen which says the word Planted to show date of planting below">Planted</string>
-    <string name="watered_date_header" translation_description="Text that is shown on each plant on the 'My Garden' screen which says the word Last Watered to show date of last watering below">Last Watered</string>
-    <string name="menu_item_share_plant" translation_description="The label for the Share menu item">Share</string>
-    <string name="share_text_plant" translation_description="The default messaged used when sharing a plant on SNS, etc.">Check out the %s plant in the Android Sunflower app</string>
-    <string name="gallery_title" translation_description="Title for the photo gallery screen">Photos by Unsplash</string>
-
-    <!-- String plurals and their related prefix / suffix strings -->
-    <string name="watering_needs_prefix" translation_description="Prefix for the text describing how often a plant should be watered. Used in combination with watering_needs_suffix.">Watering needs</string>
-    <plurals name="watering_needs_suffix">
-        <item quantity="one" translation_description="Suffix for the text describing how often a plant should be watered, singular. Used in combination with watering_needs_prefix: 'Watering needs: every day'.">every day</item>
-        <item quantity="other" translation_description="Suffix for the text describing how often a plant should be watered, plural. Used in combination with watering_needs_prefix: 'Watering needs: every 8 days'.">every %d days</item>
-    </plurals>
-
-    <plurals name="watering_next">
-        <item quantity="one" translation_description="Text indicating when the the plant should next be watered, singular. Used in conjunction with last watered date. 'May 24, 2018 - water tomorrow.'.">water tomorrow.</item>
-        <item quantity="other" translation_description="Text indicating when the the plant should next be watered, plural. Used in conjunction with last watered date. 'May 24, 2018 - water in 8 days.'.">water in %d days.</item>
-    </plurals>
-
-    <!-- Accessibility -->
-    <string name="a11y_plant_item_image" translation_description="Accessibility text for each of the plant images shown in the 'My garden' and 'Plant list' screens.">Picture of plant</string>
-    <string name="a11y_back" translatable="false">Navigate up</string>
-    <string name="gallery_content_description" translation_description="Content description for the clickable image to navigate to the gallery screen">Navigate to gallery screen</string>
-    <string name="plant_detail_image_content_description" translation_description="Content description for the header / hero image that is show at the top of the plant detail screen.">Image of plant</string>
-
+    <!-- App Info -->
+    <string name="app_name">MineDownload</string>
+    <string name="app_tagline">APK Extractor &amp; Uploader</string>
+    <string name="app_version">v1.0.0</string>
+    
+    <!-- Main Activity -->
+    <string name="title_authentication">🔐 Authentication</string>
+    <string name="title_download_manager">📦 Download Manager</string>
+    <string name="title_status">📊 Status</string>
+    
+    <string name="btn_sign_in_google">Sign In with Google</string>
+    <string name="btn_add_to_queue">Add to Queue</string>
+    
+    <string name="hint_version_code">Version Code (e.g., 1013)</string>
+    
+    <string name="status_ready">Ready. Enter version code and click \'Add to Queue\'.\n\n⚠️ Note: App must be installed on device first.</string>
+    <string name="status_getting_token">🔄 Getting token from device account…</string>
+    <string name="status_logged_in">✅ Logged in with device account\nToken: %1$s…</string>
+    <string name="status_login_failed">❌ Failed to get token. Check if Google account exists on device.</string>
+    <string name="status_error">❌ Error: %1$s</string>
+    <string name="status_queued">✅ Queued download version: %1$s\n\n🚀 Processing in background…</string>
+    <string name="status_version_empty">❌ Version code cannot be empty.</string>
+    
+    <string name="toast_login_success">Login successful!</string>
+    <string name="toast_no_google_account">No Google account found</string>
+    <string name="toast_added_to_queue">Added to queue!</string>
+    <string name="toast_enter_version_code">Please enter version code</string>
+    
+    <!-- Splash Activity -->
+    <string name="splash_loading">Loading…</string>
+    
+    <!-- Login Activity -->
+    <string name="login_title">🔐 Sign In Required</string>
+    <string name="login_subtitle">Sign in with your Google account to continue</string>
+    <string name="login_disclaimer">By signing in, you agree to use this app responsibly\nfor testing and development purposes only.</string>
+    
+    <!-- Download Item -->
+    <string name="download_status_downloading">Downloading</string>
+    <string name="download_status_paused">Paused</string>
+    <string name="download_status_completed">Completed</string>
+    <string name="download_status_error">Error</string>
+    
+    <string name="download_version">Version: %1$s</string>
+    <string name="download_size">Size: %1$s</string>
+    <string name="download_progress">%1$d%% • %2$s / %3$s</string>
+    
+    <string name="btn_pause">Pause</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_cancel">Cancel</string>
+    
+    <!-- Log Messages -->
+    <string name="log_queued_version">Queued version code: %1$s</string>
+    <string name="log_login_error">Login error</string>
+    <string name="log_extracting_apk">Extracting APK from installed app: %1$s</string>
+    <string name="log_found_apk">Found APK at: %1$s</string>
+    <string name="log_opening_stream">Opening stream for APK: %1$s (%2$d bytes)</string>
+    <string name="log_version_mismatch">Version mismatch! Requested: %1$s, but installed: %2$s</string>
+    <string name="log_proceeding_installed">Proceeding with installed version…</string>
+    <string name="log_failed_open_stream">Failed to open APK stream: %1$s</string>
+    <string name="log_package_not_installed">Package %1$s is not installed on this device</string>
+    <string name="log_apk_not_found">APK file not found at: %1$s</string>
+    <string name="log_package_info_not_found">Package info not found for %1$s</string>
+    
+    <!-- PlayStore API Messages -->
+    <string name="log_attempting_playstore">Attempting to download from Play Store API…</string>
+    <string name="log_playstore_success">Successfully downloaded from Play Store</string>
+    <string name="log_playstore_failed">Play Store download failed: %1$s, falling back to installed APK</string>
+    <string name="log_no_auth_token">No auth token, skipping Play Store download</string>
+    
+    <!-- Google Auth Messages -->
+    <string name="log_found_accounts">Found %1$d Google account(s), using: %2$s</string>
+    <string name="log_got_token">Got token from device account: %1$s</string>
+    <string name="log_failed_token">Failed to get token from device account: %1$s</string>
+    <string name="log_no_google_accounts">No Google accounts found on device</string>
+    <string name="log_id_token_saved">ID Token saved in EncryptedSharedPreferences</string>
+    
+    <!-- Download Queue Messages -->
+    <string name="log_enqueued_download">Enqueued download job: %1$s @%2$s</string>
+    <string name="log_start_relay_job">Start relay job for %1$s vc=%2$s %3$s %4$s</string>
+    <string name="log_relay_failed">Relay job failed: %1$s</string>
+    <string name="log_upload_finished">Upload finished for %1$s @%2$s</string>
+    
+    <!-- Relay Uploader Messages -->
+    <string name="log_uploading_stream">Uploading stream to VPS…</string>
+    <string name="log_upload_success">Upload successful: %1$s</string>
+    <string name="log_upload_failed">Upload failed: %1$s</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cd_app_logo">App Logo</string>
+    <string name="cd_app_icon">App Icon</string>
 </resources>

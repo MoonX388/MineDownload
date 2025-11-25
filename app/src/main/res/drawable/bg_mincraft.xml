@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background image -->
+    <item>
+        <bitmap
+                android:src="@drawable/minecraft_bg"
+                android:gravity="center"/>
+    </item>
+
+    <!-- Black overlay 40% -->
+    <item>
+        <color android:color="#66000000"/>
+    </item>
+
+</layer-list>

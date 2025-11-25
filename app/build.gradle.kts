@@ -20,31 +20,43 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("../keystore.jks")
-            storePassword = "passwordmu"
-            keyAlias = "moonx"
-            keyPassword = "passwordmu"
+            val keystoreFile = file("../keystore.jks")
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+                storePassword = "passwordmu"
+                keyAlias = "moonx"
+                keyPassword = "passwordmu"
+            }
         }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            signingConfig = signingConfigs.getByName("release")
+            // Only use release signing if keystore exists
+            val keystoreFile = file("../keystore.jks")
+            if (keystoreFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
 
         debug {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            // Debug build uses default debug keystore
         }
     }
 
     buildFeatures {
         viewBinding = true // kamu pakai XML layout
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     packaging {
@@ -63,6 +75,18 @@ dependencies {
 
     // Google Auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Security - EncryptedSharedPreferences
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // ConstraintLayout
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    
+    // CardView untuk UI
+    implementation("androidx.cardview:cardview:1.0.0")
 
     // WorkManager untuk relay background
     implementation("androidx.work:work-runtime-ktx:2.9.0")

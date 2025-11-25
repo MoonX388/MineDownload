@@ -17,11 +17,11 @@
 package com.moonx.app.downloader
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 
 object DownloadQueue {
-    private val TAG = "DownloadQueue"
-
+    private const val TAG = "DownloadQueue"
 
     fun enqueue(ctx: Context, packageName: String, versionCode: String, arch: String, channel: String) {
 // Start service with extras; in production use WorkManager/JobIntentService to handle background reliably

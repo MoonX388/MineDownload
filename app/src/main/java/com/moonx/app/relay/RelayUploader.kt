@@ -1,4 +1,6 @@
 package com.moonx.app.relay
+
+import android.content.Context
 import android.util.Log
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -7,9 +9,8 @@ import okhttp3.RequestBody
 import okio.BufferedSink
 import java.io.InputStream
 
-
 object RelayUploader {
-    private val TAG = "RelayUploader"
+    private const val TAG = "RelayUploader"
 
 
     // VPS base upload URL - change to your server

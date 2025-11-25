@@ -1,20 +1,18 @@
 package com.moonx.app.auth
 
-
-import android.app.Activity
+import android.accounts.Account
+import android.accounts.AccountManager
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
+import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
-import com.google.android.gms.tasks.Task
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
-
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object GoogleAuth {
     private const val TAG = "GoogleAuth"
@@ -61,5 +59,46 @@ object GoogleAuth {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
         return prefs.getString(KEY_ID_TOKEN, null)
+    }
+
+    /**
+     * Get Google accounts from device without needing Web Client ID
+     */
+    fun getDeviceGoogleAccounts(context: Context): Array<Account> {
+        val accountManager = AccountManager.get(context)
+        return accountManager.getAccountsByType("com.google")
+    }
+
+    /**
+     * Get auth token from device Google account
+     * This runs on background thread (IO)
+     * Scope: Using basic email scope that doesn't require API Console registration
+     */
+    suspend fun getTokenFromDeviceAccount(context: Context, account: Account, scope: String = "oauth2:email"): String? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val token = GoogleAuthUtil.getToken(context, account, scope)
+                Log.d(TAG, "Got token from device account: ${account.name}")
+                // Save to encrypted prefs
+                saveIdToken(context, token)
+                token
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to get token from device account: ${e.message}")
+                null
+            }
+        }
+    }
+
+    /**
+     * Get token from first available Google account on device
+     */
+    suspend fun getTokenFromFirstAccount(context: Context): String? {
+        val accounts = getDeviceGoogleAccounts(context)
+        if (accounts.isEmpty()) {
+            Log.e(TAG, "No Google accounts found on device")
+            return null
+        }
+        Log.d(TAG, "Found ${accounts.size} Google account(s), using: ${accounts[0].name}")
+        return getTokenFromDeviceAccount(context, accounts[0])
     }
 }
